@@ -9,11 +9,11 @@ const schema = new Schema(
 		players: { type: [String], default: [] },
 		captains: { type: [String], default: [] },
 		remainedPlayers: { type: [String], default: [] },
-		captainsChoice: { type: String, enum: ['', 'Рандомно', 'Вказано'], default: '' },
 		teamsData: { type: Object, default: {} },
+		captainsChoice: { type: String, enum: ['', 'Рандомно', 'Вказано'], default: '' },
 		sequence: { type: String, enum: ['straight', 'reverse'], default: 'straight' },
 		currentTeam: { type: Number, default: 1 },
-		lastChosenPlayers: { type: [String], default: [] },
+		lastChosenPlayers: { type: [String], default: [] }
 	},
 	{ versionKey: false }
 )
