@@ -23,6 +23,16 @@ chatsController.get('/', async (req, res, next) => {
 // 	}
 // })
 
+chatsController.get('/chatId/:chatId', async (req, res, next) => {
+	try {
+		const chat = await ChatModel.findOne(req.params)
+
+		res.status(200).send(chat)
+	} catch (err) {
+		next(err)
+	}
+})
+
 chatsController.post('/', async (req, res, next) => {
 	try {
 		const existing = await ChatModel.findOne(req.body)

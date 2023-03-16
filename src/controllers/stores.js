@@ -23,6 +23,16 @@ storesController.get('/', async (req, res, next) => {
 // 	}
 // })
 
+storesController.get('/chatId/:chatId', async (req, res, next) => {
+	try {
+		const store = await StoreModel.findOne(req.params)
+
+		res.status(200).send(store)
+	} catch (err) {
+		next(err)
+	}
+})
+
 storesController.post('/', async (req, res, next) => {
 	try {
 		const existing = await StoreModel.findOne(req.body)
