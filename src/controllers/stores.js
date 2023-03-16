@@ -5,33 +5,23 @@ const storesController = Router()
 
 storesController.get('/', async (req, res, next) => {
 	try {
-		const allStores = await StoreModel.find(req.body)
+		const stores = await StoreModel.find(req.query)
 
-		res.status(200).send(allStores)
+		res.status(200).send(stores)
 	} catch (err) {
 		next(err)
 	}
 })
 
-storesController.get('/:id', async (req, res, next) => {
-	try {
-		const store = await StoreModel.findById(req.params.id)
+// storesController.get('/:id', async (req, res, next) => {
+// 	try {
+// 		const store = await StoreModel.findById(req.params.id)
 
-		res.status(200).send(store)
-	} catch (err) {
-		next(err)
-	}
-})
-
-storesController.get('/chatId/:chatId', async (req, res, next) => {
-	try {
-		const store = await StoreModel.findOne(req.params)
-
-		res.status(200).send(store)
-	} catch (err) {
-		next(err)
-	}
-})
+// 		res.status(200).send(store)
+// 	} catch (err) {
+// 		next(err)
+// 	}
+// })
 
 storesController.post('/', async (req, res, next) => {
 	try {
@@ -57,14 +47,14 @@ storesController.patch('/chatId/:chatId', async (req, res, next) => {
 	}
 })
 
-storesController.delete('/chatId/:chatId', async (req, res, next) => {
-	try {
-		const deletedStore = await StoreModel.findOneAndDelete(req.params)
+// storesController.delete('/chatId/:chatId', async (req, res, next) => {
+// 	try {
+// 		const deletedStore = await StoreModel.findOneAndDelete(req.params)
 
-		res.status(200).send(deletedStore)
-	} catch (err) {
-		next(err)
-	}
-})
+// 		res.status(200).send(deletedStore)
+// 	} catch (err) {
+// 		next(err)
+// 	}
+// })
 
 module.exports = storesController

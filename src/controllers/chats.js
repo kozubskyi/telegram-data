@@ -5,33 +5,23 @@ const chatsController = Router()
 
 chatsController.get('/', async (req, res, next) => {
 	try {
-		const allChats = await ChatModel.find(req.body)
+		const chats = await ChatModel.find(req.query)
 
-		res.status(200).send(allChats)
+		res.status(200).send(chats)
 	} catch (err) {
 		next(err)
 	}
 })
 
-chatsController.get('/:id', async (req, res, next) => {
-	try {
-		const chat = await ChatModel.findById(req.params.id)
+// chatsController.get('/:id', async (req, res, next) => {
+// 	try {
+// 		const chat = await ChatModel.findById(req.params.id)
 
-		res.status(200).send(chat)
-	} catch (err) {
-		next(err)
-	}
-})
-
-chatsController.get('/chatId/:chatId', async (req, res, next) => {
-	try {
-		const chat = await ChatModel.findOne(req.params)
-
-		res.status(200).send(chat)
-	} catch (err) {
-		next(err)
-	}
-})
+// 		res.status(200).send(chat)
+// 	} catch (err) {
+// 		next(err)
+// 	}
+// })
 
 chatsController.post('/', async (req, res, next) => {
 	try {
@@ -57,14 +47,14 @@ chatsController.patch('/chatId/:chatId', async (req, res, next) => {
 	}
 })
 
-chatsController.delete('/chatId/:chatId', async (req, res, next) => {
-	try {
-		const deletedChat = await ChatModel.findOneAndDelete(req.params)
+// chatsController.delete('/chatId/:chatId', async (req, res, next) => {
+// 	try {
+// 		const deletedChat = await ChatModel.findOneAndDelete(req.params)
 
-		res.status(200).send(deletedChat)
-	} catch (err) {
-		next(err)
-	}
-})
+// 		res.status(200).send(deletedChat)
+// 	} catch (err) {
+// 		next(err)
+// 	}
+// })
 
 module.exports = chatsController
