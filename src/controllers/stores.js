@@ -35,7 +35,9 @@ storesController.get('/chatId/:chatId', async (req, res, next) => {
 
 storesController.post('/', async (req, res, next) => {
 	try {
-		const existing = await StoreModel.findOne(req.body)
+		const { chatId } = req.body
+
+		const existing = await StoreModel.findOne({ chatId })
 
 		if (existing) return res.status(204).send()
 
