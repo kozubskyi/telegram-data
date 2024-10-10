@@ -28,6 +28,7 @@ const NETLIFY_BASE_URL = '/.netlify/functions/api'
 
 app.use(`${NETLIFY_BASE_URL}/chats`, controllers.chats)
 app.use(`${NETLIFY_BASE_URL}/stores`, controllers.stores)
+app.use(`${NETLIFY_BASE_URL}/events`, controllers.events)
 
 app.use('*', (req, res) => {
 	res.status(400).send({ message: "This endpoint isn't correct" })
