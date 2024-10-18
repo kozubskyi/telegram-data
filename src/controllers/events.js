@@ -5,13 +5,11 @@ const eventsController = Router()
 
 eventsController.get('/', async (req, res, next) => {
 	try {
-		const event = await EventModel.findOne(req.query)
+		const { title, start, chatId } = req.query
 
-		res.status(200).send(event)
+		const response = title && start ? await EventModel.findOne(req.query) : await EventModel.find({ chatId })
 
-		// const { title, start, chatId } = req.query
-		// const response = title && start ? await EventModel.findOne(req.query) : await EventModel.find()
-		// res.status(200).send(response)
+		res.status(200).send(response)
 	} catch (err) {
 		next(err)
 	}
