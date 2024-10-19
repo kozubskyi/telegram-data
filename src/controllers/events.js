@@ -17,9 +17,13 @@ eventsController.get('/', async (req, res, next) => {
 
 eventsController.post('/', async (req, res, next) => {
 	try {
-		const { chatId, title, creatorUsername } = req.body
+		const { chatId, title, creatorUsername, start } = req.body
 
-		const updatedEvent = await EventModel.findOneAndUpdate({ chatId, title, creatorUsername }, req.body, { new: true })
+		const updatedEvent = await EventModel.findOneAndUpdate(
+			{ chatId, title, creatorUsername, start },
+			{ ...req.body, participants: [] },
+			{ new: true }
+		)
 
 		if (updatedEvent) return res.status(200).send(updatedEvent)
 
