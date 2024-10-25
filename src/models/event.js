@@ -17,7 +17,10 @@ const schema = new Schema(
 		reserveDeadline: { type: String, default: null }, // "07.10.2024, 16:00"
 		participantsMin: { type: Number, default: null }, // 10 or null
 		participantsMax: { type: Number, default: null }, // 15 or null
-		participants: { type: [String], default: [] },
+		participants: {
+			type: [{ name: String, chatId: Number, decision: { type: String, enum: ['+', '±', '–'] }, _id: false }],
+			default: [],
+		}, // [{ name: "Kozubskyi", chatId: 123456798, decision: '+' }]
 	},
 	{ versionKey: false }
 )
