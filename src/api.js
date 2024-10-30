@@ -2,7 +2,6 @@ const express = require('express')
 const serverless = require('serverless-http')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
-const cors = require('cors')
 const controllers = require('./controllers')
 
 const app = express()
@@ -21,8 +20,8 @@ mongoose
 		process.exit(1)
 	})
 
-// app.use(cors())
-app.use(express.json())
+// app.use(cors()) // телеграм боти працюють і без cors, оскільки запити робляться не з браузера
+app.use(express.json()) // парсить тіло запиту зі строки в об'єкт, який ми можемо тепер отримати в контролерах в об'єкті req.body
 
 const NETLIFY_BASE_URL = '/.netlify/functions/api'
 
