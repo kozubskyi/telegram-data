@@ -21,7 +21,7 @@ mongoose
 		process.exit(1)
 	})
 
-app.use(cors())
+// app.use(cors())
 app.use(express.json())
 
 const NETLIFY_BASE_URL = '/.netlify/functions/api'
