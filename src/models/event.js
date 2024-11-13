@@ -4,7 +4,14 @@ const schema = new Schema(
 	{
 		title: { type: String, required: true }, // "Футбол"
 		description: { type: String, default: null }, // "Формат 5х5, м'яч 4-ка"
-		creatorUsername: { type: String, default: null }, // "kozubskyi"
+		// creatorUsername: { type: String, default: null }, // "kozubskyi"
+		creator: {
+			name: String,
+			chatId: Number,
+			username: String,
+			first_name: String,
+			last_name: String,
+		}, // { name: "Kozubskyi", chatId: 123456789, username: "kozubskyi", first_name: "Denys", last_name: "Kozubskyi" }
 		chatTitle: { type: String, default: null }, // "Me and bots"
 		chatId: { type: Number, required: true }, // 123456789
 		// type: { type: String, enum: ['single event', 'regular event'], default: 'single event' }, // "single event"
@@ -18,9 +25,19 @@ const schema = new Schema(
 		participantsMin: { type: Number, default: null }, // 10 or null
 		participantsMax: { type: Number, default: null }, // 15 or null
 		participants: {
-			type: [{ name: String, chatId: Number, decision: { type: String, enum: ['+', '±', '–'] }, _id: false }],
+			type: [
+				{
+					name: String,
+					chatId: Number,
+					username: String,
+					first_name: String,
+					last_name: String,
+					decision: { type: String, enum: ['+', '±', '–'] },
+					_id: false,
+				},
+			],
 			default: [],
-		}, // [{ name: "Kozubskyi", chatId: 123456798, decision: '+' }]
+		}, // [{ name: "Kozubskyi", chatId: 123456789, username: "kozubskyi", first_name: "Denys", last_name: "Kozubskyi" }]
 	},
 	{ versionKey: false }
 )
